@@ -5,7 +5,7 @@
 **Scan it. You're not opening a link — the whole interface was inside that square.**
 
 <p align="center">
-  <img src="./demo/qr-code.png" alt="Scan to chat" width="280"/>
+  <img src="./assets/banner.png" alt="Scan to chat" width="280"/>
 </p>
 
 <p align="center"><i>👆 scan this right now with your phone camera</i></p>
