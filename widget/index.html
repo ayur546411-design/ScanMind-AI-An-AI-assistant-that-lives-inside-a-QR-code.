@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>QR Terminal</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100dvh;background:#06080a;color:#0f0;font:14px/1.5 ui-monospace,Menlo,Consolas,monospace;overflow:hidden}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(transparent,transparent 2px,rgba(0,0,0,.05) 2px,rgba(0,0,0,.05) 4px);pointer-events:none;z-index:99}
+#a{display:flex;flex-direction:column;height:100dvh;max-width:640px;margin:0 auto}
+#h{padding:10px 12px;border-bottom:1px solid #1a2030;flex-shrink:0}
+#h b{font-size:14px;letter-spacing:2px;text-transform:uppercase;text-shadow:0 0 10px rgba(0,255,0,.4)}
+#h p{font-size:10px;color:#0a0;opacity:.7;margin-top:2px}
+#m{flex:1;overflow-y:auto;padding:12px}
+.m{margin-bottom:10px;animation:i .2s}
+.l{font-size:9px;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;color:#0a0}
+.u .l{color:#3a4555}
+.u .t{color:#ccc;padding-left:10px;border-left:2px solid #3a4555}
+.a .t{color:#0f0;padding-left:10px;border-left:2px solid #0f0;text-shadow:0 0 5px rgba(0,255,0,.1)}
+@keyframes i{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+#y{display:none;margin-bottom:10px;padding-left:10px;border-left:2px solid #0a0;color:#0a0}
+#c{display:inline-block;animation:b .7s step-end infinite}
+@keyframes b{50%{opacity:0}}
+#f{padding:8px 12px;border-top:1px solid #1a2030;background:#0c1014;flex-shrink:0;display:flex;gap:6px;align-items:center}
+#f span{color:#0a0;text-shadow:0 0 8px rgba(0,255,0,.4)}
+#n{flex:1;background:0 0;border:0;color:#0f0;font:inherit;padding:10px 0;outline:0;caret-color:#0f0;min-height:44px}
+#n::placeholder{color:#3a4555}
+#s{background:0 0;border:1px solid #1a2030;color:#0a0;font:inherit;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style>
+<div id="a">
+<div id="h"><b id="N"></b><p id="T"></p></div>
+<div id="m"><div id="y"><span id="c">█</span> ...</div></div>
+<div id="f"><span>&gt;</span><input id="n" placeholder="ask me anything..." autocomplete="off" enterkeyhint="send"><button id="s">▶</button></div>
+</div>
+<script>
+var I={
+name:"Ayush Kumar",
+tagline:"IT student building AI systems & full-stack applications",
+skills:["Python","TypeScript","React","FastAPI","LangChain","Multi-Agent Systems","RAG","Socket.io"],
+projects:[
+{name:"NEXUS",desc:"Multi-agent AI OS — 5 agents via Groq Llama 3.1 intent router, Google Workspace integration"},
+{name:"Ether OS",desc:"Real-time agent orchestration — Manager/Worker pattern, sub-second parallel execution, SSE stream"},
+{name:"RAG Chatbot",desc:"LangChain + FAISS retrieval pipeline, 90%+ accuracy across multi-page docs"},
+{name:"Collab Studio",desc:"Real-time collaborative editor, sub-100ms sync via Socket.io, AI writing suggestions"}
+]},
+U="https://qr-chat-proxy.n8npranav.workers.dev",
+m=document.getElementById("m"),
+y=document.getElementById("y"),
+n=document.getElementById("n"),
+S=0;
+function A(t,c){var d=document.createElement("div");d.className="m "+(c?"a":"u");var l=document.createElement("div");l.className="l";l.textContent=c?"$ ayush":"> you";var b=document.createElement("div");b.className="t";b.textContent=t;d.appendChild(l);d.appendChild(b);m.insertBefore(d,y);m.scrollTop=m.scrollHeight}
+function F(){var v=n.value.trim();if(!v||S)return;S=1;n.value="";A(v,0);y.style.display="block";m.scrollTop=m.scrollHeight;
+fetch(U,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:v,identity:I})}).then(function(r){return r.json()}).then(function(d){y.style.display="none";A(d.reply||d.detail||d.error||"Error. Try again.",1)}).catch(function(){y.style.display="none";A("Network error — check connection.",1)}).finally(function(){S=0;n.focus()})}
+document.getElementById("N").textContent=I.name;
+document.getElementById("T").textContent=I.tagline;
+document.getElementById("s").onclick=F;
+n.onkeydown=function(e){if(e.key=="Enter")F()};
+A("Hey — I'm "+I.name+"'s AI. "+I.tagline+". This whole chat UI was packed inside a QR code. Ask me anything.",1);
+n.focus();
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Loading…</title>
+<style>
+body{background:#06080a;color:#00ff41;font-family:monospace;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}
+</style>
+</head>
+<body>
+<div id="s">Decompressing…</div>
+<script>
+// Loader: reads gzip'd+base64'd HTML from the URL hash, decompresses, and renders it.
+// Uses Option A (Blob + object URL) for reliable script execution.
+(function(){
+  var h = location.hash.slice(1);
+  if (!h) { document.getElementById("s").textContent = "No payload found."; return; }
+
+  // Base64 → Uint8Array
+  var bin = atob(h);
+  var bytes = new Uint8Array(bin.length);
+  for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+
+  // Decompress via DecompressionStream
+  var ds = new DecompressionStream("gzip");
+  var writer = ds.writable.getWriter();
+  writer.write(bytes);
+  writer.close();
+
+  new Response(ds.readable).text().then(function(html) {
+    // Option A: navigate to a Blob URL so <script> tags execute naturally
+    var blob = new Blob([html], { type: "text/html" });
+    location.replace(URL.createObjectURL(blob));
+  }).catch(function() {
+    document.getElementById("s").textContent = "Decompression failed.";
+  });
+})();
+</script>
+</body>
+</html>

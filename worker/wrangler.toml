@@ -1,0 +1,14 @@
+name = "qr-chat-proxy"
+main = "src/index.js"
+compatibility_date = "2026-07-12"
+
+# KV namespace for rate limiting — bind after creating it:
+#   wrangler kv namespace create RATE_LIMIT
+# Then paste the returned id below.
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "976ec54490444f8c9385dcc80b3c8f96"
+
+# The GROQ_API_KEY is set via:
+#   wrangler secret put GROQ_API_KEY
+# NEVER put it in this file.
