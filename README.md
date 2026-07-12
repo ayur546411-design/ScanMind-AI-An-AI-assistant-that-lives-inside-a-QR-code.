@@ -11,7 +11,7 @@
 <p align="center"><i>👆 scan this right now with your phone camera</i></p>
 
 <p align="center">
-  <img src="./demo/demo.gif" alt="Demo Animation" width="100%"/>
+  <img src="#" alt="Demo Animation" width="100%"/>
 </p>
 
 ---
