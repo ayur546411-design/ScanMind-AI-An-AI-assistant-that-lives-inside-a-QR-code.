@@ -25,7 +25,7 @@
 
 Instead of redirecting users to a website or requiring an app, the QR code contains a highly compressed HTML, CSS, and JavaScript application. Once scanned, the browser reconstructs the interface instantly and securely connects to an AI backend powered by **Cloudflare Workers**.
 
-The AI model is **not stored inside the QR code**—only the lightweight frontend is. This makes ScanMind AI fast, secure, and incredibly portable.
+The AI model is **stored inside the QR code**This makes ScanMind AI fast, secure, and incredibly portable.
 
 ---
 
