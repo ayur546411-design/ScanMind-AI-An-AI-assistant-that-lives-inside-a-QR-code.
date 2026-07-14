@@ -49,17 +49,13 @@ The AI model is **stored inside the QR code**This makes ScanMind AI fast, secure
 
 # 🖼️ Preview
 
-## Home
-
-<img src="assets/home.png" width="100%">
-
 ## Chat Interface
 
 <img src="assets/chat.png" width="100%">
 
 ## QR Scan
 
-<img src="assets/qr-demo.png" width="100%">
+<img src="assets/qr.png" width="100%">
 
 ---
 
