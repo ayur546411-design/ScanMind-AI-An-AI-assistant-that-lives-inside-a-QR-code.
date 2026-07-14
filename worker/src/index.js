@@ -8,7 +8,7 @@
  */
 
 // ── Config ──────────────────────────────────────────────────────
-const ALLOWED_ORIGIN = "https://deploy-phi-mauve.vercel.app"; // lock CORS to this
+const ALLOWED_ORIGIN = "https://scan-mind-ai-one.vercel.app"; // lock CORS to this
 const MAX_MSG_LEN = 500;        // max characters in user message
 const IP_LIMIT = 10;            // messages per IP per hour
 const GLOBAL_LIMIT = 200;       // total messages across all IPs per day
