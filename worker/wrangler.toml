@@ -7,7 +7,7 @@ compatibility_date = "2026-07-12"
 # Then paste the returned id below.
 [[kv_namespaces]]
 binding = "RATE_LIMIT"
-id = "976ec54490444f8c9385dcc80b3c8f96"
+id = "13f1224010184956865eae405978ae06"
 
 # The GROQ_API_KEY is set via:
 #   wrangler secret put GROQ_API_KEY
